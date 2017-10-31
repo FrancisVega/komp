@@ -2,7 +2,7 @@
 
 Create files with boilerplate content
 
-### Options
+### Options
 
 ```bash
 $komp --help
