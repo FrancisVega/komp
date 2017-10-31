@@ -54,16 +54,18 @@ const ROOT_COMP_FOLDER = ROOT + "/comp-templates";
 app
   .version('1.0.0')
   .option('-T, --template <name>', 'File base template', 'base')
-  .command('create <name>', {isDefault:true})
+  .command('new <name>')
+  .alias('n')
+  .description('Create new boilerplate folder/files')
   .action(function(env){
 
     if (!util.isDir(ROOT_COMP_FOLDER)) {
-      console.log("No se ha encontrado la carpeta comp-templates, utiliza komp init");
+      console.log("Folder comp-templates doesn't exists, use komp init");
       process.exit(0);
     }
 
     if (!util.isFile(ROOT + "/.komp")) {
-      console.log("No se ha encontrado el archivo .komp, utiliza komp init");
+      console.log("Condig file .komp doesn't exists, use komp init");
       process.exit(0);
     }
 
@@ -116,6 +118,7 @@ app
 
 app
   .command('init')
+  .description('Create config file and template folder')
   .action(function(env){
     initConfigFile();
     initComponentFolder();
