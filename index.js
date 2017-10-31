@@ -16,9 +16,13 @@ const initConfigFile = () => {
     fs.writeFileSync(ROOT + "/.komp", JSON.stringify(
       {
         baseName: 'component',
+        basePath: '',
         template: 'base',
         files: [
           '.html',
+          '.njk',
+          '.twig',
+          '.hbs',
           '.js',
           '.json',
           '.yaml',
@@ -44,7 +48,6 @@ const initComponentFolder = () => {
 const readConfigFile = () => {
   return config = util.readConfig(ROOT, '.komp');
 }
-
 
 // Custom comp-templates folder
 const ROOT_COMP_FOLDER = ROOT + "/comp-templates";
@@ -77,7 +80,7 @@ app
       comp.template = app.template;
 
     // Full path
-    const fullPath = app.args[0]
+    const fullPath = path.join(comp.basePath, app.args[0]);
     // name & dir
     const componentName = path.basename(fullPath);
 
@@ -124,6 +127,7 @@ app
     initConfigFile();
     initComponentFolder();
   });
+
 
 app.parse(process.argv);
 process.exit(0);
