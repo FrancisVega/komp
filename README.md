@@ -25,7 +25,7 @@ npm -g install komp
 
 ### Config defaults
 
-The scripts creates a configuration file (.newfrctl) and a directory (comps-templates) with template(s) at project root folder (same as package.json) called .newfrctl to set defaults values. If you want to create new templates you have to put inside [root]comp-templates folder. Notice how the base template is created at [root]/comp-templates/base
+The scripts creates a configuration file (.komp) and a directory (comp-templates) with template(s) at project root folder (same as package.json) called .komp to set defaults values. If you want to create new templates you have to put inside [root]comp-templates folder. Notice how the base template is created at [root]/comp-templates/base
 
 
 ### Examples of use
