@@ -1,6 +1,6 @@
 {
     "name": "komp",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Creates file components with boilerplate content",
     "bin": {
         "komp": "index.js"
