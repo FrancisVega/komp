@@ -7,14 +7,18 @@ Create files with boilerplate content
 ```bash
 $komp --help
 
-Usage: newcomp [options]
+Usage: komp [options]
 
 Options:
-
   -T, --template <name> File base template
   -v, --verbose         Verbose mode
   -h, --help            output usage information
   -V, --version         output the version number
+  
+
+Commands:
+  new|n <name>  Create new boilerplate folder/files
+  init|i        Create config file and template folder  
 ```
 
 ### Install
