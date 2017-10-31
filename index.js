@@ -118,6 +118,7 @@ app
 
 app
   .command('init')
+  .alias('i')
   .description('Create config file and template folder')
   .action(function(env){
     initConfigFile();
