@@ -36,22 +36,14 @@ The scripts creates a configuration file (.komp) and a directory (comp-templates
 Is a JSON format config file with:
 
 - baseName. This name will be replaced by the name the user enter in the command.
+- basePath: A default directory where the component folder will be created.
 - template. This is the name of the folder with the boilerplate files. This name also will replaced by the name user enter int the command.
-- files: A list of extensions that komp will search in the template folder to create the files.
 
 ```json
 {
     "baseName": "component",
+    "basePath": ""
     "template": "base",
-    "files": [
-        ".html",
-        ".js",
-        ".json",
-        ".yaml",
-        ".md",
-        ".css",
-        ".scss"
-    ]
 }
 ```
 
@@ -67,7 +59,7 @@ comp-templates (komp will create this folder)
     ├─ component.yaml
     ├─ component.md
     ├─ component.css
-    └─ component.scss 
+    └─ component.scss
 ```
 
 Komp ignore the files that finally don't exist in your HD.
@@ -83,12 +75,12 @@ comp-templates (komp will create this folder)
 │  ├─ component.yaml
 │  ├─ README.md
 │  ├─ component.css
-│  └─ component.scss 
+│  └─ component.scss
 │
 ├─ @fractal
 │  ├─ component.njk
 │  ├─ config.yaml
-│  └─ component.css 
+│  └─ component.css
 │
 └─ @simple
    └─ component.njk
