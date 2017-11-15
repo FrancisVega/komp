@@ -7,7 +7,14 @@ const colors = require('colors');
 const util = require('./util.js');
 const findRoot = require('find-root');
 const app = require('commander');
-const ROOT = findRoot(process.cwd());
+
+let ROOT;
+let INROOTFOLDER = false;
+try {
+  ROOT = findRoot(process.cwd());
+  INROOTFOLDER = true;
+} catch(e) {
+}
 
 const initConfigFile = () => {
   if (!util.isFile(ROOT + "/.komp")) {
@@ -49,55 +56,61 @@ app
   .description('Create new boilerplate folder/files')
   .action(function(env){
 
-    if (!util.isDir(ROOT_COMP_FOLDER)) {
-      console.log("Folder comp-templates doesn't exists, use komp init");
-      process.exit(0);
+    if (INROOTFOLDER) {
+
+      if (!util.isDir(ROOT_COMP_FOLDER)) {
+        console.log("Folder comp-templates doesn't exists, use komp init");
+        process.exit(0);
+      }
+
+      if (!util.isFile(ROOT + "/.komp")) {
+        console.log("Condig file .komp doesn't exists, use komp init");
+        process.exit(0);
+      }
+
+      // Read cofig file
+      const comp = readConfigFile();
+
+      // Template from user
+      if(app.template)
+        comp.template = app.template;
+
+      // Full path
+      const fullPath = path.join(comp.basePath, app.args[0]);
+      // name & dir
+      const componentName = path.basename(fullPath);
+
+      // Buscamos la carpeta de template
+      const templateFolderName =
+        fs.readdirSync(ROOT_COMP_FOLDER)
+        .filter(folder => {
+          const searchSplit = folder.split(app.template)
+          return searchSplit.length > 1
+        })[0]
+
+      const finalTemplateFolderName =
+        templateFolderName.replace(app.template, componentName)
+
+      const componentDir = `${path.dirname(fullPath)}/${finalTemplateFolderName}`;
+
+      try { fs.mkdirsSync(componentDir); } catch (e) { /* */ }
+
+      const files = fs.readdirSync(`${ROOT_COMP_FOLDER}/${templateFolderName}`)
+
+      files.map(file => {
+        const src_templatePath = `${ROOT_COMP_FOLDER}/${templateFolderName}`;
+        const src_fileContent = fs.readFileSync ( src_templatePath + "/" + file , 'utf8' );
+        const dst_fileContent = src_fileContent.replace( /@@name/g, componentName );
+        const dst_templatePath = componentDir;
+        const dst_templateFile = file.replace(config.baseName, componentName);
+        util.writeFile( dst_templatePath + "/" + dst_templateFile, dst_fileContent );
+      })
+
+      console.log("\n" + env + " component created :)\n");
+    } else {
+      console.log("Necesitas estar en una carpeta de proyecto (package.json)");
     }
 
-    if (!util.isFile(ROOT + "/.komp")) {
-      console.log("Condig file .komp doesn't exists, use komp init");
-      process.exit(0);
-    }
-
-    // Read cofig file
-    const comp = readConfigFile();
-
-    // Template from user
-    if(app.template)
-      comp.template = app.template;
-
-    // Full path
-    const fullPath = path.join(comp.basePath, app.args[0]);
-    // name & dir
-    const componentName = path.basename(fullPath);
-
-    // Buscamos la carpeta de template
-    const templateFolderName =
-      fs.readdirSync(ROOT_COMP_FOLDER)
-      .filter(folder => {
-        const searchSplit = folder.split(app.template)
-        return searchSplit.length > 1
-      })[0]
-
-    const finalTemplateFolderName =
-      templateFolderName.replace(app.template, componentName)
-
-    const componentDir = `${path.dirname(fullPath)}/${finalTemplateFolderName}`;
-
-    try { fs.mkdirsSync(componentDir); } catch (e) { /* */ }
-
-    const files = fs.readdirSync(`${ROOT_COMP_FOLDER}/${templateFolderName}`)
-
-    files.map(file => {
-      const src_templatePath = `${ROOT_COMP_FOLDER}/${templateFolderName}`;
-      const src_fileContent = fs.readFileSync ( src_templatePath + "/" + file , 'utf8' );
-      const dst_fileContent = src_fileContent.replace( /@@name/g, componentName );
-      const dst_templatePath = componentDir;
-      const dst_templateFile = file.replace(config.baseName, componentName);
-      util.writeFile( dst_templatePath + "/" + dst_templateFile, dst_fileContent );
-    })
-
-    console.log("\n" + env + " component created :)\n");
   });
 
 app
@@ -105,8 +118,12 @@ app
   .alias('i')
   .description('Create config file and template folder')
   .action(function(env){
-    initConfigFile();
-    initComponentFolder();
+    if (INROOTFOLDER) {
+      initConfigFile();
+      initComponentFolder();
+    } else {
+      console.log("Necesitas estar en una carpeta de proyecto (package.json)");
+    }
   });
 
 app.parse(process.argv);
