@@ -89,6 +89,7 @@ app
 					componentName,
 				);
 				const dst_templatePath = componentDir;
+				console.log(comp);
 				const dst_templateFile = file.replace(comp.baseName, componentName);
 				writeFile(dst_templatePath + "/" + dst_templateFile, dst_fileContent);
 			});
