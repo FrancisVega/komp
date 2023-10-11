@@ -1,30 +1,34 @@
 {
-    "name": "komp",
-    "version": "1.0.7",
-    "description": "Creates file components with boilerplate content",
-    "bin": {
-        "komp": "index.js"
-    },
-    "main": "index.js",
-    "keywords": [
-        "fractal",
-        "component",
-        "cli",
-        "patternlibrary",
-        "designsystem",
-        "design",
-        "system"
-    ],
-    "author": "Francis Vega <hisconer@gmail.com> (inartx.com)",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/FrancisVega/komp"
-    },
-    "dependencies": {
-        "colors": "^1.1.2",
-        "commander": "^2.11.0",
-        "find-root": "^1.1.0",
-        "fs-extra": "^4.0.2"
-    }
+	"name": "komp",
+	"version": "2.0.0",
+	"description": "Creates file components with boilerplate content",
+	"bin": {
+		"komp": "index.js"
+	},
+	"main": "index.js",
+	"keywords": [
+		"component",
+		"cli",
+		"designsystem",
+		"design",
+		"system"
+	],
+	"author": "Francis Vega <hisconer@gmail.com> (inartx.com)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FrancisVega/komp"
+	},
+	"dependencies": {
+		"@types/find-root": "^1.1.2",
+		"@types/fs-extra": "^11.0.2",
+		"@types/node": "^20.8.4",
+		"colors": "^1.1.2",
+		"commander": "^2.11.0",
+		"esbuild": "^0.19.4",
+		"find-root": "^1.1.0",
+		"fs-extra": "^4.0.2",
+		"prettier": "^3.0.3",
+		"tsx": "^3.13.0"
+	}
 }

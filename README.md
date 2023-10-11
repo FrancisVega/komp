@@ -14,11 +14,11 @@ Options:
   -v, --verbose         Verbose mode
   -h, --help            output usage information
   -V, --version         output the version number
-  
+
 
 Commands:
   new|n <name>  Create new boilerplate folder/files
-  init|i        Create config file and template folder  
+  init|i        Create config file and template folder
 ```
 
 ### Install
@@ -48,7 +48,9 @@ Is a JSON format config file with:
 ```
 
 With this content in .komp file the komp command will search for this structure:
-    
+
+
+
 ```
 comp-templates (komp will create this folder)
 └─ base
@@ -94,8 +96,8 @@ komp new button --template fractal
 
 This will create a folder and files in your HD like this:
 
-*Note that komp will respect the EXTRA character you put in the template folders and files.
-If you call to the fractal template, komp will looking for a folder that containt fractal in the name, and then let the extra char ( in this case the @ ). This way you can boilerplate the names too.*
+_Note that komp will respect the EXTRA character you put in the template folders and files.
+If you call to the fractal template, komp will looking for a folder that containt fractal in the name, and then let the extra char ( in this case the @ ). This way you can boilerplate the names too._
 
 ```
 button

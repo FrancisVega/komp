@@ -1,0 +1,21 @@
+{
+	"include": [".", "./src", "./global.d.ts"],
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"isolatedModules": true,
+		"allowJs": true,
+		"target": "es2016",
+		"jsx": "react-jsx",
+		"module": "esnext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"moduleResolution": "node"
+	}
+}
