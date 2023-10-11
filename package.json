@@ -23,7 +23,6 @@
 		"@types/find-root": "^1.1.2",
 		"@types/fs-extra": "^11.0.2",
 		"@types/node": "^20.8.4",
-		"colors": "^1.1.2",
 		"commander": "^2.11.0",
 		"esbuild": "^0.19.4",
 		"find-root": "^1.1.0",
