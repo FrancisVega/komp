@@ -1,5 +1,4 @@
-import { readFileSync, readdirSync, statSync, writeFileSync } from "fs-extra";
-import { extname } from "path";
+import { readJSONSync, statSync, writeFileSync } from "fs-extra";
 
 function isDir(f: string) {
 	try {
@@ -21,24 +20,12 @@ function writeFile(f: string, content: string) {
 	if (isFile(f) === false) {
 		writeFileSync(f, content);
 	} else {
-		console.log(`The file ${f} already exists. Better call Saul.`.red);
+		console.log(`The file ${f} already exists. Better call Saul.`);
 	}
 }
 
-function readJSON(f: string) {
-	return JSON.parse(readFileSync(f, "utf8"));
-}
-
-function writeJSON(f: string, cnt: unknown) {
-	writeFileSync(f, JSON.stringify(cnt, null, 4));
-}
-
 function readConfig(baseDir: string, configFile: string) {
-	return readJSON(baseDir + "/" + configFile);
-}
-
-function getFileFromExtension(dir: string, extension: string) {
-	return readdirSync(dir).filter((file) => extname(file) == extension);
+	return readJSONSync(`${baseDir}/${configFile}`, "utf8");
 }
 
 export { isDir, isFile, readConfig, writeFile };

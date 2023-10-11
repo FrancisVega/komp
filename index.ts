@@ -34,8 +34,8 @@ app
 				process.exit(0);
 			}
 
-			if (!isFile(ROOT + "/.komp")) {
-				console.log("Condig file .komp doesn't exists, use komp init");
+			if (!isFile(ROOT + "/.komprc")) {
+				console.log("Condig file .komprc doesn't exists, use komp init");
 				process.exit(0);
 			}
 
@@ -117,10 +117,10 @@ app.parse(process.argv);
 process.exit(0);
 
 function initConfigFile() {
-	if (!isFile(ROOT + "/.komp")) {
-		console.log("Config file [.komp] (hidden) created.");
+	if (!isFile(ROOT + "/.komprc")) {
+		console.log("Config file [.komprc] (hidden) created.");
 		fs.writeFileSync(
-			ROOT + "/.komp",
+			ROOT + "/.komprc",
 			JSON.stringify(
 				{
 					baseName: "component",
@@ -145,5 +145,5 @@ function initComponentFolder() {
 
 // Read config file
 function readConfigFile() {
-	return readConfig(ROOT, ".komp");
+	return readConfig(ROOT, ".komprc");
 }

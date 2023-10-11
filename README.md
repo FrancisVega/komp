@@ -29,9 +29,9 @@ npm -g install komp
 
 ### Config defaults
 
-The scripts creates a configuration file (.komp) and a directory (comp-templates) with template(s) at project root folder (same as package.json) called .komp to set defaults values. If you want to create new templates you have to put inside [root]comp-templates folder. Notice how the base template is created at [root]/comp-templates/base
+The scripts creates a configuration file (.komprc) and a directory (comp-templates) with template(s) at project root folder (same as package.json) called .komprc to set defaults values. If you want to create new templates you have to put inside [root]comp-templates folder. Notice how the base template is created at [root]/comp-templates/base
 
-###.komp
+###.komprc
 
 Is a JSON format config file with:
 
@@ -47,9 +47,7 @@ Is a JSON format config file with:
 }
 ```
 
-With this content in .komp file the komp command will search for this structure:
-
-
+With this content in .komprc file the komp command will search for this structure:
 
 ```
 comp-templates (komp will create this folder)
@@ -110,7 +108,7 @@ button
 ### Examples
 
 ```bash
-# Create .komp config file
+# Create .komprc config file
 komp init
 ```
 
